@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>			
+			body{
+				height: 400px;
+			}
+			div{
+				width: 100px;
+				height: 100px;
+				background: skyblue;
+				position: absolute;
+				cursor: move;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+	</body>
+	<script>
+		var box = document.getElementById("box");
+		box.onmousedown = function(evt){
+			var e = evt ||Window.event;
+			var mx = e.offsetX ||e.layerX;
+			var my = e.offsetY ||e.layerY;
+			document.onmousemove = function(evt){
+				var e = evt ||Window.event;
+				box.style.left = e.pageX - mx + "px";
+				box.style.top  =  e.pageY - my + "px";
+				
+				if(box.offsetLeft < 0){
+					box.style.left = 0;
+				}else if(box.offsetLeft > document.body.offsetWidth - box.offsetWidth){
+					box.style.left = document.body.offsetWidth - box.offsetWidth + "px";
+				}
+				if(box.offsetTop < 0){
+					box.style.top = 0;
+				}else if(box.offsetTop > document.body.offsetHeight - box.offsetHeight){
+					box.style.top = document.body.offsetHeight - box.offsetHeight + "px";
+				}
+			}
+		}
+		document.onmouseup = function(){
+			document.onmousemove = null;
+		}
+	</script>
+</html>

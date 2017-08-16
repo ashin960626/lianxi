@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		数组排序arr=[6,9,3,5,1,0]
+		
+			
+			
+	</body>
+	<script>
+				
+				var arr=[6,9,3,5,1,0];
+				
+				
+				for(var i = 0 ; i < arr.length-1; i ++){
+				
+				    for(var j = 0; j < arr.length-i; j++ ){
+				
+				        var a;
+				
+				        if(arr[j] > arr[j+1]){
+				
+				            a = arr[j];
+				
+				            arr[j] = arr[j+1]
+				
+				            arr[j+1] = a
+				
+				        }
+				
+				    }
+				   
+				
+				}
+				console.log(arr);
+				alert(arr);
+				
+	</script>
+</html>

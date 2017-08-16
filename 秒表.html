@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<p>页面停留时间：<span id="a" style="color: red;"></span>时
+						<span id="b" style="color: yellow;"></span>分
+						<span id="c" style="color: green;"></span>秒
+		</p>
+	</body>
+	<script>
+		var a = document.getElementById("a");
+		var t=0,s=0,m=0,h=0;
+		setInterval(changeTime,1000)
+		function changeTime(){			
+			t++;
+			console.log(t)
+			s=t%60;
+			m=parseInt(t/60);
+			h=parseInt(t/(60*24));
+			if(h<10){
+				a.innerHTML = "0"+h;
+			}else{
+				a.innerHTML = h;
+			}
+			
+			if(m<10){
+				b.innerHTML = "0"+m;
+			}else{
+				b.innerHTML = m;
+				
+			}if(s<10){
+				c.innerHTML = "0"+s;
+			}else{
+				c.innerHTML = s;
+			}
+			
+		}
+	</script>
+</html>

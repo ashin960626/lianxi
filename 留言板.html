@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="button"  id="headadd" value="开头添加"/>
+		<input type="button"  id="headdrop" value="开头删除"/>
+		<input type="button"  id="footadd" value="结尾添加"/>
+		<input type="button"  id="footdrop" value="结尾删除"/>
+		<ul id="p"></ul>
+	</body>
+	<script>
+		function $(id){
+			return document.getElementById(id);
+		}
+		//开始添加
+		$("headadd").onclick = function(){
+			var li = document.getElementsByTagName("li");
+			var ali = document.createElement("li");
+			ali.innerHTML = this.value;
+			$("p").insertBefore(ali,li[0]);
+		}
+		//开始删除
+		$("headdrop").onclick = function(){
+			var li = document.getElementsByTagName("li");
+			$("p").removeChild(li[0]);
+		}
+		//结尾添加
+		$("footadd").onclick = function(){
+			var li = document.getElementsByTagName("li");
+			var ali = document.createElement("li");
+			ali.innerHTML = this.value;
+			$("p").appendChild(ali);
+		}
+		//结尾删除
+		$("footdrop").onclick = function(){
+			var li = document.getElementsByTagName("li");
+			$("p").removeChild(li[li.length-1]);
+		}
+	</script>
+</html>

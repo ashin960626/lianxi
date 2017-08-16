@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width: 500px;
+				height: 350px;
+				margin:0 auto;
+				overflow: hidden;
+				position: relative;
+			}
+			#box ul{
+				position: relative;
+			}
+			#box li{
+				width: 100%;
+				position: absolute;
+				left: 0;
+				top:0;
+				display: none;
+			}
+			#box li.active{
+				display: block;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<ul>
+			<li class="active"><img src="img/春.jpg" width="100%" /></li>
+			<li><img src="img/夏.jpg" width="100%"/></li>
+			<li><img src="img/秋.jpg" width="100%"/></li>
+			<li><img src="img/冬.jpg" width="100%"/></li>
+			</ul>
+						
+		</div>
+	</body>
+	<script>
+		var box = document.getElementById("box");
+		var oli = document.getElementsByTagName("li");
+		
+		var timer = setInterval(change,1000);
+		
+		var num = 0;
+		function change(){
+			num++;
+			if(num==4){
+				num=0;
+			}
+			for(var i=0; i<oli.length; i++){
+				oli[i].className = "";
+			}
+			oli[num].className = "active";
+		}
+		
+		
+		box.onmouseover=function(){
+			clearInterval(timer);
+		}
+		box.onmouseout=function(){
+			timer = setInterval(change, 2000);
+		}
+	</script>
+</html>
