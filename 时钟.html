@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="300px" height="300px" style="border: 1px solid red;"></canvas>
+		<script>
+			var can = document.getElementById("mycanvas");
+			var c = can.getContext("2d");
+			c.translate(150,150);
+			c.beginPath();
+			c.arc(0,0,150,0,2*Math.PI);
+			c.closePath();
+			c.fillStyle="white";
+			c.fill();	
+			
+			var arcr= 0;
+			//时针
+			for(var i=0;i<12;i++){
+				var x1 = Math.sin(arcr*Math.PI/180);
+				var y1 =  Math.cos(arcr*Math.PI/180);
+				c.moveTo(150*x1,150*y1);
+				c.lineTo(130*x1,130*y1);				
+				c.stroke();
+				arcr = arcr + 30;
+			}
+			//分针
+			for(var i=0;i<60;i++){
+				var x1 = Math.sin(arcr*Math.PI/180);
+				var y1 =  Math.cos(arcr*Math.PI/180);
+				c.moveTo(150*x1,150*y1);
+				c.lineTo(140*x1,140*y1);				
+				c.stroke();
+				arcr = arcr + 6;
+			}
+			c.beginPath();
+			c.arc(0,0,5,0,2*Math.PI);
+			c.closePath();
+			c.stroke();
+			//秒针
+			
+			
+			
+			c.moveTo(0,0);
+			var x = Math.sin(72*Math.PI/180);
+			 var y =Math.cos(72*Math.PI/180);
+			c.lineTo(110*x,110*y);
+			c.lineWidth = 3;
+			c.stroke();
+			c.beginPath();
+			c.moveTo(0,0);
+			var x = Math.sin(60*Math.PI/180);
+			 var y =Math.cos(60*Math.PI/180);
+			c.lineTo(70*x,70*y);
+			c.lineWidth =5;
+			c.stroke();
+			c.beginPath();
+			var a = 0;
+						
+				var x = Math.sin(a*Math.PI/180);
+				var y =Math.cos(a*Math.PI/180);
+				c.moveTo(0,0);							
+				c.lineTo(150*x,150*y);
+				c.lineWidth = 2;
+				c.strokeStyle = "red";
+				c.stroke();
+
+				
+		</script>
+	</body>
+</html>

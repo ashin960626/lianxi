@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>0</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				position:relative;	
+				width:350px;
+			    height: 350px;
+			    border:1px solid #000000;	
+			    margin: 100px;		
+			}
+			#small{
+				position:relative;
+			}
+			#mask{
+				width:157.5px;
+				height: 157.5px;
+				background: pink;
+				opacity: 0.3;
+				position: absolute;
+				top:0;
+				left: 0;
+				display: none;
+				cursor: move;
+			}
+			#big{
+				width: 360px;
+				height: 360px;
+				border: 1px solid black;
+				position: absolute;
+				left:360px;
+				top:0;
+				overflow: hidden;
+				display: none;
+			}
+			#bigImage{
+				position: absolute;
+				top:0;
+				left: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div id="small">
+				<img src="img/001.jpg" alt="" id="smallImg" />
+				<div id="mask"></div>
+			</div>
+			<div id="big">
+				<img src="img/0001.jpg" id="bigImage" alt="" />
+			</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	//  放大镜的公式
+	//  大图宽度 /小图的宽度  =  大图显示区宽度 / 放大镜宽度  =  大图偏移/放大镜的偏移
+	//  800 / 350      =  360 /100
+	
+	function $(id){
+		return document.getElementById(id);
+	}		 
+	//鼠标划入box msak big显示
+	$("small").onmouseover=function(){
+		$("mask").style.display="block";
+		$("big").style.display="block";
+		
+		//为了构成放大镜的比例关系  需要修改 大图显示区的宽和高
+		//$("mask").style.width = $("big").offsetWidth*$("smallImg").offsetWidth/$("bigImage").offsetWidth + "px";
+		//$("mask").style.height = $("big").offsetHeight*$("smallImg").offsetHeight/$("bigImage").offsetHeight + "px";		
+	}
+	
+	//给box绑定鼠标移动事件
+	$("small").onmouseout=function(){
+		$("mask").style.display="none";
+		$("big").style.display="none"
+	}
+	
+	$("small").onmousemove=function(evt){
+		//做事件兼容
+		var e=evt || window.event;
+		
+		var x = e.pageX-$("box").offsetLeft-$("mask").offsetWidth/2;
+		var y = e.pageY-$("box").offsetTop-$("mask").offsetHeight/2;
+		
+		//边界处理
+		if (x <= 0) { // 左侧
+			x = 0;
+		}else if(x >= ( $("box").offsetWidth - $("mask").offsetWidth )){ //右侧
+			x = $("box").offsetWidth - $("mask").offsetWidth;
+		}
+		if (y <= 0) { //上侧
+			y = 0;
+		}else if( y >= $("box").offsetHeight - $("mask").offsetHeight ){//下侧
+			y = $("box").offsetHeight - $("mask").offsetHeight;
+		} 
+		$("mask").style.left=x+"px";
+		$("mask").style.top=y+"px";
+		
+		//大图   的  x  和  y  偏移
+		var bx =  x * $("big").offsetWidth / $("mask").offsetWidth;
+		var by =  y * $("big").offsetHeight / $("mask").offsetHeight;
+		$("bigImage").style.left = -bx+"px";
+		$("bigImage").style.top = -by+"px";
+	}
+	
+</script>

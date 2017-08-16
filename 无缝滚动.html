@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>无缝滚动</title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			ul{
+				list-style: none;
+				width: 600%;
+				position: absolute;
+				left: 0;
+			}
+			#box{
+				width:600px;
+				height: 200px;
+				overflow: hidden;
+				margin: 100px auto;
+				position: relative;
+			}
+			img{
+				/*display: block;*/
+				/*vertical-align: top;*/
+			}
+			li{
+				float:left;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<ul>
+				<li><img src="img/a.jpg" /></li>
+				<li><img src="img/b.jpg" /></li>
+				<li><img src="img/c.jpg" /></li>
+				<li><img src="img/d.jpg" /></li>
+				<li><img src="img/a.jpg" /></li>
+				<li><img src="img/b.jpg" /></li>
+			</ul>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	var ulObj = document.getElementsByTagName("ul")[0];
+	var num = 0;
+	var timer = null;
+	timer = setInterval(autoPlay,1);
+	function autoPlay(){
+		num--;
+		if (num<-1200){
+			num=0;
+		}
+		ulObj.style.left = num + "px";
+	}
+	ulObj.onmouseover = function(){
+		clearInterval(timer);
+	}
+	ulObj.onmouseout = function(){
+		timer = setInterval(autoPlay,1);
+	}
+</script>
